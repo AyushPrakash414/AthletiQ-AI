@@ -11,6 +11,10 @@ public class userService {
     private UserRepository repository;
     public UserResponse register(RegisterRequest request)
     {
+        if (repository.existsByEmail(request.getEmail()))
+        {
+            throw new RuntimeException("Email Exists for this user");
+        }
         User user=new User();
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
@@ -28,5 +32,5 @@ public class userService {
         userResponse.setUpdatedAt(savedUser.getUpdatedAt());
         return userResponse;
     }
-
+//57:47
 }
