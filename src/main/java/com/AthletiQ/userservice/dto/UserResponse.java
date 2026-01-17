@@ -6,7 +6,7 @@ public class UserResponse {
         private String id;
         private String firstName;
         private String email;
-        private  String password;
+        private String password;
         private String lastName;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;

@@ -4,10 +4,13 @@ import com.AthletiQ.userservice.Repository.UserRepository;
 import com.AthletiQ.userservice.dto.RegisterRequest;
 import com.AthletiQ.userservice.dto.UserResponse;
 import com.AthletiQ.userservice.modal.User;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
+@Data
 public class userService {
-
+    @Autowired
     private UserRepository repository;
     public UserResponse register(RegisterRequest request)
     {
@@ -20,7 +23,7 @@ public class userService {
         user.setPassword(request.getPassword());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastname());
-        User savedUser=new User();
+        User savedUser=repository.save(user);
         UserResponse userResponse=new UserResponse();
         userResponse.setId(savedUser.getId());
         userResponse.setPassword(savedUser.getPassword());
